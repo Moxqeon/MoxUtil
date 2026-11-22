@@ -1,0 +1,52 @@
+//file:noinspection GroovyAssignabilityCheck
+plugins {
+    id("java-library")
+    id("maven-publish")
+}
+
+group = "com.github.Moxqeon"
+version = "v1.0.0"
+
+repositories {
+    maven {
+        name = "Aliyun"
+        url = "https://maven.aliyun.com/repository/public"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation("systems.manifold:manifold-ext-rt:2026.1.16")
+    annotationProcessor("systems.manifold:manifold-ext:2026.1.16")
+
+    api('commons-codec:commons-codec:1.23.0')
+    api("net.objecthunter:exp4j:0.4.8")
+    api("org.graalvm.polyglot:polyglot:25.0.2")
+    api("org.graalvm.polyglot:js:25.0.2")
+    api("org.ow2.asm:asm:9.11.1")
+
+    compileOnly('com.google.guava:guava:33.8.0-jre')
+    compileOnly("com.google.code.gson:gson:2.10.1")
+    compileOnly("org.jetbrains:annotations:24.1.0")
+    compileOnly("org.slf4j:slf4j-api:2.0.16")
+    compileOnly('ch.qos.logback:logback-core:1.5.35')
+    compileOnly('ch.qos.logback:logback-classic:1.6.6')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+    options.compilerArgs += ["-Xplugin:Manifold"]
+    options.fork = true
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.encoding = "UTF-8"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
