@@ -8,6 +8,9 @@ import org.jetbrains.annotations.NotNull;
 
 @Extension
 public final class ContextExtension {
+    private ContextExtension() {
+        throw new UnsupportedOperationException("Utility class");
+    }
     public static void importObject(@This @NotNull Context context, @NotNull String varName, @NotNull Object value) {
         context.getBindings("js").putMember(varName, value);
     }
