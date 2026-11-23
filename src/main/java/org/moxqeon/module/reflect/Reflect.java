@@ -69,21 +69,21 @@ public final class Reflect {
     }
 
     @Nullable
-    public static <T> T getFieldValue(@NotNull Object $this, @NotNull String fieldName) throws NoSuchFieldException {
-        Field field = getFieldExact($this.getClass(), fieldName);
-        return getFieldValue($this, field);
+    public static <T> T getFieldValue(@NotNull Object obj, @NotNull String fieldName) throws NoSuchFieldException {
+        Field field = getFieldExact(obj.getClass(), fieldName);
+        return getFieldValue(obj, field);
     }
 
     @Nullable
-    public static <T> T getFieldValue(@NotNull Object $this, @NotNull Field field) {
-        boolean accessible = field.canAccess($this);
+    public static <T> T getFieldValue(@NotNull Object obj, @NotNull Field field) {
+        boolean accessible = field.canAccess(obj);
         field.setAccessible(true);
         try {
-            T result = cast(field.get($this));
+            T result = cast(field.get(obj));
             field.setAccessible(accessible);
             return result;
         } catch (IllegalAccessException ignored) {
-            MoxUtil.warn(String.format("Failed to access field \"%s\" of %s", field.getName(), $this.getClass()));
+            MoxUtil.warn(String.format("Failed to access field \"%s\" of %s", field.getName(), obj.getClass()));
             field.setAccessible(accessible);
             return null;
         }
@@ -131,11 +131,11 @@ public final class Reflect {
 
     @SuppressWarnings("unchecked")
     @Nullable
-    public static <T> T cast(@Nullable Object $this) {
-        return $this != null ? (T) $this : null;
+    public static <T> T cast(@Nullable Object obj) {
+        return obj != null ? (T) obj : null;
     }
 
-    public static <T> T cast(@Nullable Object $this, @NotNull Class<T> tClass) {
-        return $this != null ? tClass.cast($this) : null;
+    public static <T> T cast(@Nullable Object obj, @NotNull Class<T> tClass) {
+        return obj != null ? tClass.cast(obj) : null;
     }
 }
