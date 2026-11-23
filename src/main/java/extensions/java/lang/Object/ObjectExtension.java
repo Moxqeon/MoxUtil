@@ -6,8 +6,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.moxqeon.module.reflect.Reflect;
 
-import java.lang.reflect.Field;
-
 @Extension
 public final class ObjectExtension {
     private ObjectExtension() {
@@ -22,7 +20,11 @@ public final class ObjectExtension {
         Reflect.setFieldValue($this, fieldName, value);
     }
 
-    public static <T> T cast(@This @NotNull Object $this){
+    public static void invokeMethod(@This @NotNull Object $this, @NotNull String methodName, @NotNull Class<?>[] parameterTypes, @NotNull Object... args) throws NoSuchMethodException {
+        Reflect.invokeMethod($this, methodName, parameterTypes, args);
+    }
+
+    public static <T> T cast(@This @NotNull Object $this) {
         return Reflect.cast($this);
     }
 
