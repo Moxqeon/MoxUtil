@@ -26,7 +26,6 @@ public final class Reflect {
 
     public static <T> T construct(@NotNull Class<T> tClass, @NotNull Class<?>[] paramClasses, @NotNull Object... params) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Preconditions.checkArgument((paramClasses.length == params.length), "Params must be in line with the given classes");
-        ReflectUtil.field()
         return tClass.getConstructor(paramClasses).newInstance(params);
     }
 
