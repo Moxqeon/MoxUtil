@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation("systems.manifold:manifold-ext-rt:2026.1.16")
+    api("systems.manifold:manifold-ext-rt:2026.1.16")
     annotationProcessor("systems.manifold:manifold-ext:2026.1.16")
 
     api('commons-codec:commons-codec:1.23.0')
