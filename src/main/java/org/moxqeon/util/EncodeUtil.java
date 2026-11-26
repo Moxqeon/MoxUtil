@@ -17,13 +17,13 @@ public final class EncodeUtil {
     }
 
     @NotNull
-    public static String encodeBase64(@NotNull String $this) {
-        return new String(Base64.getEncoder().encode($this.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+    public static String encodeBase64(@NotNull String string) {
+        return new String(Base64.getEncoder().encode(string.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
     }
 
     @NotNull
-    public static String decodeBase64(@NotNull String $this) {
-        return new String(Base64.getDecoder().decode($this.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+    public static String decodeBase64(@NotNull String string) {
+        return new String(Base64.getDecoder().decode(string.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
     }
 
     @NotNull

@@ -33,7 +33,7 @@ public final class ZipUtil {
     }
 
     public static IOResult compress(@NotNull File $this, @NotNull List<File> sources) {
-        try (ZipOutputStream zipOutput = new ZipOutputStream(new FileOutputStream($this))) {
+        try (ZipOutputStream zipOutput = new ZipOutputStream(new FileOutputStream(file))) {
             for (File source : sources)
                 compressFileToZip(source, zipOutput, source.getName());
             return IOResult.SUCCESS;
@@ -44,7 +44,7 @@ public final class ZipUtil {
 
     public static IOResult decompressAll(@NotNull ZipFile $this, @NotNull File destDir) {
         destDir.mkdirs();
-        Enumeration<? extends ZipEntry> entries = $this.entries();
+        Enumeration<? extends ZipEntry> entries = zipFile.entries();
         while (entries.hasMoreElements()) {
             ZipEntry zipEntry = entries.nextElement();
             try (InputStream in = $this.getInputStream(zipEntry)) {

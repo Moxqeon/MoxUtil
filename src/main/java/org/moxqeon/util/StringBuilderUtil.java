@@ -15,7 +15,7 @@ public final class StringBuilderUtil {
     }
 
     @NotNull
-    public static StringBuilder clamp(@This @NotNull StringBuilder $this, @NotNull String clamp) {
-        return $this.insert(0, clamp).append(clamp);
+    public static StringBuilder clamp(@This @NotNull StringBuilder stringBuilder, @NotNull String clamp) {
+        return stringBuilder.insert(0, clamp).append(clamp);
     }
 }
