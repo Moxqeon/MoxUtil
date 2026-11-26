@@ -1,6 +1,7 @@
 package org.moxqeon.module.reflect;
 
 import com.google.common.base.Preconditions;
+import manifold.util.ReflectUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.moxqeon.MoxUtil;
@@ -15,7 +16,9 @@ import java.util.Map;
 
 /**
  * 反射工具类，封装字段与方法的访问、实例构造以及类型转换等操作。
+ * @see manifold.ext.rt.api.Jailbreak
  */
+@Deprecated
 public final class Reflect {
     private Reflect() {
         throw new IllegalStateException();
@@ -23,6 +26,7 @@ public final class Reflect {
 
     public static <T> T construct(@NotNull Class<T> tClass, @NotNull Class<?>[] paramClasses, @NotNull Object... params) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Preconditions.checkArgument((paramClasses.length == params.length), "Params must be in line with the given classes");
+        ReflectUtil.field()
         return tClass.getConstructor(paramClasses).newInstance(params);
     }
 
